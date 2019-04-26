@@ -1,6 +1,6 @@
 # Basic Setup
 
-At this time, please engage with Arta directly regarding any setup, including obtaining access tokens.
+At this time, please engage with Arta directly regarding any setup including obtaining access tokens.
 
 ## Authentication
 Authentication takes place via a grant token. We will provide this token to you directly.
