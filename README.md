@@ -1,15 +1,23 @@
-# Arta API Documentation
+# Arta Documentation
 
-Welcome to the Arta API.
+Welcome to the Arta Documentation.
 
-**Please Note** all information is preliminary and subject to change
+**_Please Note all information is preliminary and subject to change_**
 
 ## Table of contents
 
--  [Basic Setup](sections/basics.md)
-   -  [Authentication](sections/basics.md#authentication)
+- About
+  - [Who is Arta](sections/about.md)
+  - [Contact Us](sections/about.md)
 - API
-  - [Tracking Shipments](sections/tracking.md)
-    - [Process Flow and calls](sections/tracking.md#process-flow-and-calls)
-      - [Obtaining Carrier Name Tokens](sections/tracking.md#obtaining-carrier-name-tokens)
-      - [Making A Shipment Track Call](sections/tracking.md#making-a-shipment-track-call)
+  -  [Basic Setup](sections/api/basics.md)
+     -  [Authentication](sections/api/basics.md#authentication)
+  - [Tracking Shipments](sections/api/tracking.md)
+    - [Process Flow and Calls](sections/api/tracking.md#process-flow-and-calls)
+      - [Obtaining Carrier Name Tokens](sections/api/tracking.md#obtaining-carrier-name-tokens)
+      - [Making A Shipment Track Call](sections/api/tracking.md#making-a-shipment-track-call)
+
+All content and use is subject to our [Privacy](http://shiparta.com/privacy),
+[Standards](http://shiparta.com/standards) & [Terms](http://shiparta.com/terms)
+
+© [ARTA Shipping Inc.](http://shiparta.com)

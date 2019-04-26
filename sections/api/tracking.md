@@ -4,10 +4,14 @@ This document describes the use of the Arta Tracking API.
 
 ## Process Flow and Calls
 
-### Obtaining Carrier Name tokens
 Before you can begin making tracking calls, you will need to know the tokenized name of the carrier the package was
-shipped though. This will be used in the url of the actual tracking call below. To obtain a list of the supported
-carriers and their tokens, you can simply make a `GET` request to the the `metadata/carriers` route.
+shipped though. This tokenized name, along with the tracking number, will then be used as part of the url scheme when
+making the tracking call. You will then receive back an array of the know history of the shipment.
+
+
+### Obtaining Carrier Name tokens
+To obtain a list of the supported carriers and their tokens, make a `GET` request to the the
+`metadata/carriers` route.
 
 #### Example Call
 ```curl
@@ -35,11 +39,13 @@ curl https://api.shiparta.com/metadata/carriers -H "Authorization: ARTAToken art
     }
 ]
 ```
+For more information regarding this response, please view the full [Carrier metadata schema](../../json_schemas/metadata-carriers.schema.json)
 
 ### Making a Shipment Track Call
 
 Shipment tracking calls are a `GET` request. You will need to provide the name of carrier in the token format provided
-by the metadata call above and the tracking number as part of the url.
+by the metadata call above and the tracking number as part of the url. The url scheme for track call is
+`/tracking/<tokenized_carrier_name>/<tracking_number>`
 
 #### Example call
 ```curl
@@ -75,9 +81,5 @@ curl https://api.shiparta.com/tracking/ups/1ZA9T4567890123450 -H "Authorization:
     }
 ]
 ```
-
-## JSON Data Schemas
-
-[Carrier metadata schema](../json_schemas/metadata-carriers.schema.json)
-
-[Tracking response schema](../json_schemas/tracking-response.schema.json)
+For more information regarding this response, please view the full
+[tracking response schema](../../json_schemas/tracking-response.schema.json)
