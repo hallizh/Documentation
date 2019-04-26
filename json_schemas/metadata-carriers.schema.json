@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "#metadata-carriers.schema.json",
+  "title": "Carrier Metadata",
+  "description": "The list of carriers",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": [
+      "token",
+      "carrier_name"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "description": "A tokenized version of the carrier name, url safe"
+      },
+      "carrier_name" : {
+        "type": "string",
+        "description": "The full carrier name"
+      },
+      "notes": {
+        "type": "string",
+        "description": "Any additional notes"
+      }
+    }
+  }
+}

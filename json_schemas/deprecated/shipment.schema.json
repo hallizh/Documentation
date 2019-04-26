@@ -1,0 +1,485 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "#create_shipment.schema.json",
+  "title": "Create an Arta shipment",
+  "description": "JSON schema used to create an Arta shipment",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "description": "The arta id of the user that the shipment belongs to."
+    },
+    "origin_address": {
+      "description": "The originating address of the shipment",
+      "$ref": "#/definitions/address"
+    },
+    "origin_address_id": {
+      "type": "integer",
+      "description": "Id of a user's saved address to use as the origin address"
+    },
+    "destination_address": {
+      "description": "The destination address of the shipment",
+      "$ref": "#/definitions/address"
+    },
+    "destination_address_id": {
+      "type": "integer",
+      "description": "Id of a user's saved address to use as the destination address"
+    },
+    "title": {
+      "type": "string",
+      "description": "The displayed title of the shipment"
+    },
+    "transit_insurance_value": {
+      "type": "integer",
+      "description": "The value of shipment if requesting insurance. This should be given in cents"
+    },
+    "transit_insurance_type": {
+      "type": "string",
+      "enum": ["arta", "own", "uninsured"],
+      "description": "The type of insurance"
+    },
+    "only_preferred_vendor_quotes": {
+      "type": "boolean",
+      "description": "Only obtain quotes from the list of preferred vendors",
+      "default": false
+    },
+    "preferred_vendor_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "uuid"
+      },
+      "description": "List of preferred vendor ids. Used when 'only_preferred_vendor_quotes' is True.",
+      "default": []
+    },
+    "pickup_start": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Requested date when pick-up window for the shipment begin. Null indicates an open/flexible window.",
+      "format": "string",
+      "default": null,
+      "examples": [
+        "05/24/2018",
+        "12/21/2018"
+      ]
+    },
+    "pickup_end": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Requested date when pick-up window for the shipment end. Null indicates an open/flexible window.",
+      "format": "string",
+      "default": null,
+      "examples": [
+        "05/24/2018",
+        "12/21/2018"
+      ]
+    },
+    "delivery_start": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Requested date when delivery window for the shipment begin. Null indicates an open/flexible window.",
+      "format": "string",
+      "default": null,
+      "examples": [
+        "05/24/2018",
+        "12/21/2018"
+      ]
+    },
+    "delivery_end": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Requested date when delivery window for the shipment end. Null indicates an open/flexible window.",
+      "format": "string",
+      "default": null,
+      "examples": [
+        "05/24/2018",
+        "12/21/2018"
+      ]
+    },
+    "notes": {
+      "type": "string",
+      "description": "General Notes about the shipment"
+    },
+    "attachments": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/attachment"
+      },
+      "description": "Collection of files or documents that should be attached to the shipment."
+    },
+    "origin_services": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/service"
+      },
+      "description": "A collection of origin service objects"
+    },
+    "origin_service_ids": {
+      "type": "array",
+      "description": "An array of origin service ids",
+      "items": {
+        "type": "integer"
+      }
+    },
+    "destination_services": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/service"
+      },
+      "description": "A collection of destination service objects"
+    },
+    "destination_service_ids": {
+      "type": "array",
+      "description": "An array of destination service ids",
+      "items": {
+        "type": "integer"
+      }
+    },
+    "items": {
+      "type": "array",
+      "description": "A collection item objects",
+      "items": {
+        "$ref": "#/definitions/item"
+      }
+    },
+    "customs_control": {
+      "type": "string",
+      "enum": ["controlled", "free"],
+      "description": "Whether the shipment to be 'controlled' under customs or under 'free' circulation"
+    }
+  },
+  "required": [
+    "items",
+    "title",
+    "transit_insurance_type"
+  ],
+  "oneOf": [
+    {
+      "oneOf": [
+        {
+          "required": [
+            "origin_service_ids"
+          ]
+        },
+        {
+          "required": [
+            "origin_services"
+          ]
+        }
+      ]
+    },
+    {
+      "oneOf": [
+        {
+          "required": [
+            "destination_service_ids"
+          ]
+        },
+        {
+          "required": [
+            "destination_services"
+          ]
+        }
+      ]
+    }
+  ],
+  "definitions": {
+    "address": {
+      "$id": "#/definitions/address",
+      "type": "object",
+      "properties": {
+        "company_name": {
+          "type": "string",
+          "description": "The Company or display name of the address"
+        },
+        "address_1": {
+          "type": "string",
+          "description": "The first line of the address"
+        },
+        "address_2": {
+          "type": "string",
+          "description": "The second line of the address"
+        },
+        "city": {
+          "type": "string",
+          "description": "The city"
+        },
+        "state": {
+          "type": "string",
+          "maxLength": 2,
+          "description": "2 letter abbreviation of the state or provence"
+        },
+        "zip_code": {
+          "type": "string",
+          "description": "The zip or postal code for the address"
+        },
+        "country": {
+          "type": "string",
+          "maxLength": 2,
+          "description": "An ISO 3166-1 alpha-2 country code"
+        },
+        "longitude": {
+          "$ref": "#/definitions/longitude"
+        },
+        "latitude": {
+          "$ref": "#/definitions/latitude"
+        },
+        "contact_name": {
+          "type": "string",
+          "description": "The name of the contact at the address"
+        },
+        "contact_phone_country_code": {
+          "type": "string",
+          "description": "The phone number's country code"
+        },
+        "contact_phone": {
+          "type": "string",
+          "description": "The phone number of the contact at the address"
+        },
+        "contact_email_address": {
+          "type": "string",
+          "format": "email",
+          "description": "The email address of the contact at the address"
+        },
+        "is_visible": {
+          "type": "boolean",
+          "description": "Save the address for later use",
+          "default": false
+        }
+      },
+      "dependencies": {
+        "longitude": ["latitude"],
+        "latitude": ["longitude"],
+        "contact_phone": ["contact_phone_country_code"]
+      },
+      "required": [
+        "is_visible",
+        "contact_phone"
+      ],
+      "oneOf": [
+        {"required": ["country", "city", "zip_code"]},
+        {"required": ["longitude", "latitude"]}
+      ]
+    },
+    "latitude": {
+      "$id": "#/definitions/latitude",
+      "type": "number",
+      "minimum": -90,
+      "maximum": 90
+    },
+    "longitude": {
+      "$id": "#/definitions/longitude",
+      "type": "number",
+      "minimum": -180,
+      "maximum": 180
+    },
+    "attachment": {
+      "$id": "#/definitions/attachement",
+      "type": "object",
+      "description": "A document attachment",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the document"
+        },
+        "data": {
+          "type": "string",
+          "description": "File contents of the attachment as Base64 encoded string"
+        }
+      },
+      "required": ["name", "data"]
+    },
+    "service": {
+      "$id": "#/definitions/service",
+      "type": "object",
+      "description": "A Service",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "ID of the service"
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the service"
+        },
+        "is_active": {
+          "type": "boolean",
+          "description": "If True, then the service is included. (Default: True)"
+        }
+      },
+      "required": ["id"]
+    },
+    "customs": {
+      "$id": "#/definitions/customs_control",
+      "type": "object",
+      "description": "The customs information about the item",
+      "properties": {
+        "is_under_customs_control": {
+          "type": "boolean",
+          "description": "true if item is under customs control"
+        },
+        "import_type": {
+          "type": "string",
+          "enum": [
+            "permanently",
+            "temporary"
+          ],
+          "description": "The type of import"
+        },
+        "customs_control_company_name": {
+          "type": "string",
+          "description": "The name of the company handling the customs"
+        },
+        "customs_control_contact_name": {
+          "type": "string",
+          "description": "The name of a contact at the company handling the customs"
+        },
+        "customs_control_ref_no": {
+          "type": "string",
+          "description": "The customs reference number"
+        },
+        "import_tax_payment_party": {
+          "type": "string",
+          "description": "Who will be paying the import duties & taxes",
+          "enum":["myself", "other"]
+        },
+        "import_tax_contact_name": {
+          "type": "string",
+          "description": "The name of the party responsible for the import duties & taxes"
+        },
+        "import_tax_contact_email": {
+          "type": "string",
+          "description": "The email of the party responsible for the import duties & taxes"
+        },
+        "import_tax_contact_number": {
+          "type": "string",
+          "description": "The phone number of the party responsible for the import duties & taxes"
+        },
+        "bond_preference":{
+          "type": "boolean",
+          "description": "Set as true if you have a preference under whose TA/Bond we import under"
+        }
+      }
+    },
+    "item": {
+      "$id": "#/definitions/item",
+      "type": "object",
+      "description": "An item to be shipped.",
+      "properties": {
+        "quantity": {
+          "type": "integer",
+          "description": "How many of this item is in the shipment"
+        },
+        "media_type_id": {
+          "type": "integer",
+          "description": "The id of the media type"
+        },
+        "length_unit": {
+          "type": "string",
+          "enum": [
+            "cm",
+            "in"
+          ],
+          "description": "The unit the height, width and depth are described in"
+        },
+        "weight_unit": {
+          "type": "string",
+          "enum": [
+            "kg",
+            "lb"
+          ],
+          "description": "The unit the weight is described in"
+        },
+        "framing": {
+          "type": "string",
+          "enum": [
+            "unframed"
+          ],
+          "description": "The framing of the object"
+        },
+        "height": {
+          "type": "string",
+          "description": "The height of the object. Should be a number or fraction",
+          "examples": [
+            "15",
+            "12.5",
+            "9 3/4"
+          ]
+        },
+        "width": {
+          "type": "string",
+          "description": "The height of the object. Should be a number or fraction",
+          "examples": [
+            "15",
+            "12.5",
+            "9 3/4"
+          ]
+        },
+        "depth": {
+          "type": "string",
+          "description": "The height of the object. Should be a number or fraction",
+          "examples": [
+            "15",
+            "12.5",
+            "9 3/4"
+          ]
+        },
+        "weight": {
+          "type": "number",
+          "description": "The weight of the object"
+        },
+        "customs": {
+          "$ref": "#/definitions/customs"
+        },
+        "artwork_title": {
+          "type": "string",
+          "description": "The title of the artwork"
+        },
+        "artist_name": {
+          "type": "string",
+          "description": "The artist's name"
+        },
+        "creation_year": {
+          "type": "integer",
+          "description": "The yeat the artwork was produced"
+        },
+        "medium": {
+          "type": "string",
+          "description": "The medium of the artwork"
+        },
+        "value": {
+          "type": "integer",
+          "description": "The value (in cents) of the item"
+        },
+        "notes": {
+          "type": "string",
+          "description": "Any additional notes about the artwork"
+        },
+        "current_packing_type_ids": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "description": "a packing type id"
+          },
+          "description": "An array of packing type ids describing the current packing of the item"
+        },
+        "requested_packing_type_ids": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "description": "a packing type id"
+          },
+          "description": "An array of packing type ids describing the requested packing of the item"
+        }
+      }
+    }
+  }
+}
