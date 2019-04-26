@@ -1,13 +1,13 @@
-# Arta Documentation
+# ARTA Documentation
 
-Welcome to the Arta Documentation.
+Welcome to the ARTA Documentation.
 
 **_Please Note all information is preliminary and subject to change_**
 
 ## Table of contents
 
 - About
-  - [Who is Arta](sections/about.md)
+  - [Who is ARTA](sections/about.md)
   - [Contact Us](sections/about.md)
 - API
   -  [Basic Setup](sections/api/basics.md)
