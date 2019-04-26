@@ -1,12 +1,12 @@
 # Tracking API
 
-This document describes the use of the Arta Tracking API.
+This document describes the use of the ARTA Tracking API.
 
 ## Process Flow and Calls
 
 Before you can begin making tracking calls, you will need to know the tokenized name of the carrier the package was
 shipped though. This tokenized name, along with the tracking number, will then be used as part of the url scheme when
-making the tracking call. You will then receive back an array of the know history of the shipment.
+making the tracking call. You will then receive back an array of the known tracking history of the shipment.
 
 
 ### Obtaining Carrier Name tokens
@@ -25,17 +25,8 @@ curl https://api.shiparta.com/metadata/carriers -H "Authorization: ARTAToken art
         "carrier_name": "FedEx"
     },
     {
-        "token": "new_zealand_post",
-        "carrier_name": "New Zealand Post",
-        "notes": "also used for Pace and CourierPost"
-    },
-    {
         "token": "ups",
         "carrier_name": "UPS"
-    },
-    {
-        "token": "usps",
-        "carrier_name": "USPS"
     }
 ]
 ```
