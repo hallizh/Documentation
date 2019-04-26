@@ -105,6 +105,9 @@
                 {
                   "const": "information_received",
                   "description": "tInformation about the package received."
+                },
+                {
+                  "const": null
                 }
               ]
             }
@@ -198,6 +201,9 @@
                 {
                   "const": "reschedule_delivery",
                   "description": "Contact carrier to reschedule delivery."
+                },
+                {
+                  "const": null
                 }
               ]
             }
@@ -261,8 +267,15 @@
         "then": {
           "properties": {
             "substatus": {
-              "const": "delivered",
-              "description": "Package has been delivered."
+              "oneOf": [
+                {
+                  "const": "delivered",
+                  "description": "Package has been delivered."
+                },
+                {
+                  "const": null
+                }
+              ]
             }
           }
         }
@@ -286,6 +299,9 @@
                 {
                   "const": "package_unclaimed",
                   "description": "Package is unclaimed."
+                },
+                {
+                  "const": null
                 }
               ]
             }
@@ -327,6 +343,9 @@
                 {
                   "const": "package_lost",
                   "description": "Package has been lost. Contact carrier for more details."
+                },
+                {
+                  "const": null
                 }
               ]
             },
@@ -345,8 +364,15 @@
         "then": {
           "properties": {
             "substatus": {
-              "const": "other",
-              "description": "Unrecognized carrier status."
+              "oneOf": [
+                {
+                  "const": "other",
+                  "description": "Unrecognized carrier status."
+                },
+                {
+                  "const": null
+                }
+              ]
             },
             "exception": true
           }
