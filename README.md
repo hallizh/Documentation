@@ -17,7 +17,7 @@ Welcome to the Arta Documentation.
       - [Obtaining Carrier Name Tokens](sections/api/tracking.md#obtaining-carrier-name-tokens)
       - [Making A Shipment Track Call](sections/api/tracking.md#making-a-shipment-track-call)
 
-All content and use is subject to our [Privacy](http://shiparta.com/privacy),
-[Standards](http://shiparta.com/standards) & [Terms](http://shiparta.com/terms)
+All content and use is subject to our [Privacy](https://shiparta.com/privacy),
+[Standards](https://shiparta.com/standards) & [Terms](https://shiparta.com/terms)
 
-© [ARTA Shipping Inc.](http://shiparta.com)
+© [ARTA Shipping Inc.](https://shiparta.com)
