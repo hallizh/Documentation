@@ -1,6 +1,6 @@
-# About Arta
+# About ARTA
 
-## Who is Arta
+## Who is ARTA
 
 ARTA is a logistics technology company re-architecting high-end global commerce. We aim to make light work of heavy tasks, and are crafting technology that not only protects the world’s precious goods, but also enables elevated commerce experiences for users and merchants alike.
 
