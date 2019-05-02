@@ -5,9 +5,8 @@ This document describes the use of the ARTA Tracking API.
 ## Process Flow and Calls
 
 Before you can begin making tracking calls, you will need to know the tokenized name of the carrier the package was
-shipped though. This tokenized name, along with the tracking number, will then be used as part of the url scheme when
-making the tracking call. You will then receive back an array of the known tracking history of the shipment.
-
+shipped with. This tokenized name, along with the tracking number, will then be used as part of the url scheme when
+making the tracking call. You will then receive back an array of the known tracking history of the shipment, ordered in time based descending order.
 
 ### Obtaining Carrier Name tokens
 To obtain a list of the supported carriers and their tokens, make a `GET` request to the the
