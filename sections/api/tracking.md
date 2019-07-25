@@ -55,6 +55,8 @@ curl https://api.shiparta.com/tracking/ups/1ZA9T4567890123450/ -H "Authorization
 ```json
 [
     {
+        "carrier": "ups",
+        "tracking_number": "1ZA9T4567890123450",
         "status": "TRANSIT",
         "status_details": "Your shipment has departed from the origin.",
         "status_date": "2019-04-24T19:42:30.716000Z",
@@ -67,6 +69,8 @@ curl https://api.shiparta.com/tracking/ups/1ZA9T4567890123450/ -H "Authorization
         "excepted": null
     },
     {
+        "carrier": "ups",
+        "tracking_number": "1ZA9T4567890123450",
         "status": "UNKNOWN",
         "status_details": "The carrier has received the electronic shipment information.",
         "status_date": "2019-04-23T17:37:30.716000Z",
